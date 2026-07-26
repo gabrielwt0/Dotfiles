@@ -72,10 +72,10 @@ mouse_warping none
 
 ### Ociosidade e bloqueio ------------------------------------------------
 exec swayidle -w \
-    timeout 300 'swaylock -f -c 1d2021' \
+    timeout 300 'swaylock -f -c 1d2021 -s solid_color' \
     timeout 600 'swaymsg "output * power off"' \
     resume 'swaymsg "output * power on"' \
-    before-sleep 'swaylock -f -c 1d2021'
+    before-sleep 'swaylock -f -c 1d2021 -s solid_color'
 
 ### Atalhos: básico ------------------------------------------------------
 bindsym $mod+Return exec $term
@@ -176,7 +176,7 @@ bindsym $mod+Shift+m exec $cider
 bindsym $mod+g exec $steam
 bindsym $mod+Print exec grim -g "$(slurp)" - | wl-copy
 
-bindsym $mod+Shift+x exec swaylock -f -c 1d2021
+bindsym $mod+Shift+x exec swaylock -f -c 1d2021 -s solid_color
 
 ### Atribuição de apps a workspaces -------------------------------------
 assign [app_id="^org\.mozilla\.firefox$"] $ws2

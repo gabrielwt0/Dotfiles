@@ -19,6 +19,7 @@
         "custom/sep", "backlight",
         "custom/sep", "custom/tuned",
         "custom/sep", "battery",
+        "custom/sep", "custom/power",
         "tray"
     ],
 
@@ -153,6 +154,12 @@
         "format-plugged": "bat: ={capacity}%",
         "format-full": "bat: cheia",
         "tooltip-format": "{timeTo}"
+    },
+
+    "custom/power": {
+        "format": "power",
+        "tooltip": false,
+        "on-click": "swaynag -t warning -m 'Menu de energia' -B 'Bloquear' 'swaylock -f -c 1d2021 -s solid_color' -B 'Sair' 'swaymsg exit' -B 'Suspender' 'systemctl suspend' -B 'Reiniciar' 'systemctl reboot' -B 'Desligar' 'systemctl poweroff'"
     },
 
     "tray": {
