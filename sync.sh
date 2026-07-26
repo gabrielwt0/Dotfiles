@@ -23,6 +23,7 @@ copia ~/.config/sway/config.d            sway
 # Waybar
 copia ~/.config/waybar/config.jsonc      waybar
 copia ~/.config/waybar/style.css         waybar
+copia ~/.config/waybar/tuned.sh          waybar
 
 # Terminal e shell
 copia ~/.config/alacritty/alacritty.toml alacritty

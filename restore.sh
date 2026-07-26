@@ -35,6 +35,7 @@ restaura doom/config.el             ~/.config/doom/config.el
 restaura doom/packages.el           ~/.config/doom/packages.el
 restaura apps/code-flags.conf       ~/.config/code-flags.conf
 restaura apps/spotify-flags.conf    ~/.config/spotify-flags.conf
+restaura waybar/tuned.sh            ~/.config/waybar/tuned.sh
 
 cat <<'EOF'
 
