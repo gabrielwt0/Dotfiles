@@ -17,6 +17,7 @@
         "custom/sep", "bluetooth",
         "custom/sep", "network",
         "custom/sep", "backlight",
+        "custom/sep", "custom/tuned",
         "custom/sep", "battery",
         "tray"
     ],
@@ -71,6 +72,15 @@
         "format": "steam",
         "tooltip": false,
         "on-click": "steam"
+    },
+
+    "custom/tuned": {
+        "exec": "~/.config/waybar/tuned.sh status",
+        "return-type": "json",
+        "interval": 30,
+        "signal": 8,
+        "on-click": "~/.config/waybar/tuned.sh next",
+        "on-click-right": "~/.config/waybar/tuned.sh prev"
     },
 
     "clock": {

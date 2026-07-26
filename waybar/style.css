@@ -102,6 +102,15 @@ window#waybar.hidden {
     background: #22262a;
 }
 
+#custom-tuned {
+    padding: 0 8px;
+    color: #b8b8ae;
+}
+
+#custom-tuned.powersave { color: #a3be8c; }
+#custom-tuned.balanced  { color: #b8b8ae; }
+#custom-tuned.throughput-performance { color: #ebcb8b; }
+
 /* ---------- estados ---------- */
 #pulseaudio.muted,
 #bluetooth.off,
