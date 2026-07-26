@@ -1,0 +1,157 @@
+{
+    "layer": "top",
+    "position": "top",
+    "height": 24,
+    "spacing": 0,
+
+    "modules-left": [
+        "sway/workspaces", "sway/mode",
+        "custom/sep",
+        "custom/ff", "custom/code", "custom/docs",
+        "custom/spt", "custom/cider", "custom/steam"
+    ],
+    "modules-center": ["custom/sep", "clock"],
+    "modules-right": [
+        "custom/sep", "sway/language",
+        "custom/sep", "pulseaudio",
+        "custom/sep", "bluetooth",
+        "custom/sep", "network",
+        "custom/sep", "backlight",
+        "custom/sep", "battery",
+        "tray"
+    ],
+
+    "sway/workspaces": {
+        "disable-scroll": false,
+        "all-outputs": true,
+        "format": "{icon}{name}",
+        "format-icons": {
+            "focused": "*",
+            "urgent": "!",
+            "default": ""
+        }
+    },
+
+    "sway/mode": {
+        "format": "[{}]"
+    },
+
+    "custom/ff": {
+        "format": "ff",
+        "tooltip": false,
+        "on-click": "firefox",
+        "on-click-right": "firefox --private-window"
+    },
+
+    "custom/code": {
+        "format": "code",
+        "tooltip": false,
+        "on-click": "code"
+    },
+
+    "custom/docs": {
+        "format": "doc",
+        "tooltip": false,
+        "on-click": "onlyoffice-desktopeditors"
+    },
+
+    "custom/spt": {
+        "format": "spt",
+        "tooltip": false,
+        "on-click": "spotify"
+    },
+
+    "custom/cider": {
+        "format": "am",
+        "tooltip": false,
+        "on-click": "sidra --ozone-platform-hint=auto"
+    },
+
+    "custom/steam": {
+        "format": "steam",
+        "tooltip": false,
+        "on-click": "steam"
+    },
+
+    "clock": {
+        "interval": 30,
+        "format": "{:L%H:%M %A, %b %d}",
+        "tooltip-format": "<tt>{calendar}</tt>",
+        "calendar": {
+            "mode": "month",
+            "weeks-pos": "right",
+            "format": {
+                "today": "<b>{}</b>"
+            }
+        }
+    },
+
+    "sway/language": {
+        "format": "key: {short}",
+        "on-click": "swaymsg input type:keyboard xkb_switch_layout next"
+    },
+
+    "pulseaudio": {
+        "format": "vol: {volume}%",
+        "format-muted": "vol: mudo",
+        "format-bluetooth": "vol: {volume}% bt",
+        "format-source": "mic: {volume}%",
+        "format-source-muted": "mic: mudo",
+        "scroll-step": 5,
+        "on-click": "pavucontrol",
+        "on-click-right": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+        "tooltip-format": "{desc}"
+    },
+
+    "bluetooth": {
+        "format": "bt: {status}",
+        "format-disabled": "bt: off",
+        "format-off": "bt: off",
+        "format-on": "bt: on",
+        "format-connected": "bt: {device_alias}",
+        "format-connected-battery": "bt: {device_alias} {device_battery_percentage}%",
+        "on-click": "blueman-manager",
+        "tooltip-format": "{controller_alias}"
+    },
+
+    "network": {
+        "interval": 5,
+        "format-wifi": "wifi: {essid} {signalStrength}%",
+        "format-ethernet": "eth: {ipaddr}",
+        "format-linked": "eth: sem ip",
+        "format-disconnected": "net: --",
+        "on-click": "alacritty --class alacritty-float -e nmtui",
+        "tooltip-format-wifi": "{essid} ({signalStrength}%)",
+        "tooltip-format-ethernet": "{ifname}"
+    },
+
+    "backlight": {
+        "format": "mon: {percent}%",
+        "scroll-step": 5,
+        "on-scroll-up": "brightnessctl set 5%+",
+        "on-scroll-down": "brightnessctl set 5%-"
+    },
+
+    "battery": {
+        "interval": 30,
+        "states": {
+            "warning": 25,
+            "critical": 10
+        },
+        "format": "bat: {capacity}%",
+        "format-charging": "bat: +{capacity}%",
+        "format-plugged": "bat: ={capacity}%",
+        "format-full": "bat: cheia",
+        "tooltip-format": "{timeTo}"
+    },
+
+    "tray": {
+        "icon-size": 15,
+        "spacing": 8
+    },
+
+    "custom/sep": {
+        "format": "|",
+        "tooltip": false
+    }
+}

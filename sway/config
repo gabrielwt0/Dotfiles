@@ -1,0 +1,223 @@
+# ~/.config/sway/config
+# Fedora Sway Spin — config minimalista com Firefox, VS Code, OnlyOffice e Spotify
+
+### Variáveis ------------------------------------------------------------
+set $mod Mod4
+set $left h
+set $down j
+set $up k
+set $right l
+
+set $term foot
+set $menu rofi -show combi -combi-modes drun#run -modes combi -terminal '$term'
+
+# Aplicativos
+set $browser firefox
+set $editor  code
+set $office  onlyoffice-desktopeditors
+set $music   spotify
+set $cider sidra --ozone-platform-hint=auto
+set $steam   steam
+set $term alacritty
+
+# Workspaces
+set $ws1 "1: term"
+set $ws2 "2: web"
+set $ws3 "3: code"
+set $ws4 "4: docs"
+set $ws5 "5: music"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
+
+### Aparência ------------------------------------------------------------
+font pango:monospace 10
+
+default_border pixel 2
+default_floating_border pixel 2
+hide_edge_borders smart
+gaps inner 6
+gaps outer 0
+smart_gaps on
+smart_borders on
+
+client.focused           #5e81ac  #2e3440  #eceff4  #5e81ac    #5e81ac
+client.focused_inactive  #3b4252  #2e3440  #d8dee9  #3b4252    #3b4252
+client.unfocused         #3b4252  #2e3440  #4c566a  #3b4252    #3b4252
+client.urgent            #bf616a  #2e3440  #eceff4  #bf616a    #bf616a
+
+output * bg #2e3440 solid_color
+
+### Saídas e entradas ----------------------------------------------------
+# swaymsg -t get_outputs / swaymsg -t get_inputs
+# output eDP-1 resolution 1920x1080 position 0,0 scale 1
+
+input type:keyboard {
+    xkb_layout br
+    repeat_delay 250
+    repeat_rate 40
+}
+
+input type:touchpad {
+    tap enabled
+    natural_scroll enabled
+    dwt enabled
+    accel_profile adaptive
+}
+
+focus_follows_mouse yes
+mouse_warping none
+
+### Ociosidade e bloqueio ------------------------------------------------
+exec swayidle -w \
+    timeout 300 'swaylock -f -c 2e3440' \
+    timeout 600 'swaymsg "output * power off"' \
+    resume 'swaymsg "output * power on"' \
+    before-sleep 'swaylock -f -c 2e3440'
+
+### Atalhos: básico ------------------------------------------------------
+bindsym $mod+Return exec $term
+bindsym $mod+d exec $menu
+bindsym $mod+q kill
+bindsym $mod+Shift+q kill
+bindsym $mod+Shift+c reload
+bindsym $mod+Shift+e exec swaynag -t warning \
+    -m "Sair do Sway?" -B "Sim" "swaymsg exit"
+
+floating_modifier $mod normal
+
+### Atalhos: aplicativos -------------------------------------------------
+bindsym $mod+n exec $browser
+bindsym $mod+Shift+n exec $browser --private-window
+bindsym $mod+c exec $editor
+bindsym $mod+o exec $office
+bindsym $mod+m exec $music
+
+### Atalhos: foco e movimento -------------------------------------------
+bindsym $mod+$left focus left
+bindsym $mod+$down focus down
+bindsym $mod+$up focus up
+bindsym $mod+$right focus right
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+bindsym $mod+Shift+$left move left
+bindsym $mod+Shift+$down move down
+bindsym $mod+Shift+$up move up
+bindsym $mod+Shift+$right move right
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+### Atalhos: workspaces --------------------------------------------------
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
+bindsym $mod+0 workspace $ws10
+
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8
+bindsym $mod+Shift+9 move container to workspace $ws9
+bindsym $mod+Shift+0 move container to workspace $ws10
+
+bindsym $mod+Tab workspace back_and_forth
+
+### Atalhos: layout ------------------------------------------------------
+bindsym $mod+b splith
+bindsym $mod+v splitv
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+t layout toggle split
+bindsym $mod+f fullscreen
+bindsym $mod+Shift+space floating toggle
+bindsym $mod+space focus mode_toggle
+bindsym $mod+a focus parent
+
+bindsym $mod+Shift+minus move scratchpad
+bindsym $mod+minus scratchpad show
+
+### Modo redimensionar ---------------------------------------------------
+mode "resize" {
+    bindsym $left resize shrink width 30px
+    bindsym $down resize grow height 30px
+    bindsym $up resize shrink height 30px
+    bindsym $right resize grow width 30px
+    bindsym Left resize shrink width 30px
+    bindsym Down resize grow height 30px
+    bindsym Up resize shrink height 30px
+    bindsym Right resize grow width 30px
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+r mode "resize"
+
+### Teclas de mídia e sistema -------------------------------------------
+bindsym $mod+p exec playerctl play-pause
+bindsym $mod+bracketright exec playerctl next
+bindsym $mod+bracketleft exec playerctl previous
+bindsym $mod+Shift+m exec $cider
+bindsym $mod+g exec $steam
+bindsym $mod+Print exec grim -g "$(slurp)" - | wl-copy
+
+bindsym $mod+Shift+x exec swaylock -f -c 2e3440
+
+### Atribuição de apps a workspaces -------------------------------------
+assign [app_id="^org\.mozilla\.firefox$"] $ws2
+
+assign [app_id="^code$"] $ws3
+assign [class="^[Cc]ode$"] $ws3
+assign [class="^code-url-handler$"] $ws3
+
+assign [app_id="^ONLYOFFICE Desktop Editors$"] $ws4
+assign [app_id="^DesktopEditors$"] $ws4
+assign [class="^DesktopEditors$"] $ws4
+
+assign [app_id="^spotify$"] $ws5
+assign [class="^[Ss]potify$"] $ws5
+
+assign [app_id="^sidra$"] $ws5
+assign [class="^[Ss]team$"] $ws6
+for_window [class="^[Ss]team$" title="^Friends List$"] floating enable
+for_window [class="^[Ss]team$" title="^Steam Settings$"] floating enable
+for_window [app_id="alacritty-float"] floating enable, resize set 900 600
+
+### Regras de janela ----------------------------------------------------
+for_window [title="^Picture-in-Picture$"] floating enable, sticky enable, border none
+for_window [window_role="pop-up"] floating enable
+for_window [window_role="dialog"] floating enable
+for_window [window_type="dialog"] floating enable
+for_window [app_id="^DesktopEditors$" title="^(Abrir|Salvar|Open|Save).*"] floating enable
+for_window [app_id="pavucontrol"] floating enable, resize set 900 600
+for_window [app_id="foot-float"] floating enable, resize set 900 600
+for_window [app_id="blueman-manager"] floating enable, resize set 800 600
+workspace $ws5 gaps inner 0
+
+### Barra: waybar --------------------------------------------------------
+bar {
+    swaybar_command waybar
+}
+
+### Autostart -----------------------------------------------------------
+exec mako
+exec blueman-applet
+exec nm-applet --indicator
+
+### Include em camadas do Fedora (SEMPRE por último) ---------------------
+include '$(/usr/libexec/sway/layered-include "/usr/share/sway/config.d/*.conf" "/etc/sway/config.d/*.conf" "${XDG_CONFIG_HOME:-$HOME/.config}/sway/config.d/*.conf")'

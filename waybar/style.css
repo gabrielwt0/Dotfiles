@@ -1,0 +1,159 @@
+/* ~/.config/waybar/style.css */
+
+* {
+    border: none;
+    border-radius: 0;
+    font-family: "JetBrainsMono Nerd Font", "JetBrains Mono", monospace;
+    font-size: 12px;
+    font-weight: normal;
+    min-height: 0;
+    padding: 0;
+    margin: 0;
+    box-shadow: none;
+    text-shadow: none;
+}
+
+window#waybar {
+    background: #16181a;
+    color: #b8b8ae;
+}
+
+/* deixa a barra some quando a janela está em fullscreen */
+window#waybar.hidden {
+    opacity: 0;
+}
+
+/* ---------- workspaces ---------- */
+#workspaces {
+    margin-left: 6px;
+}
+
+#workspaces button {
+    padding: 0 6px;
+    background: transparent;
+    color: #6b6f76;
+    min-width: 0;
+}
+
+#workspaces button.visible {
+    color: #b8b8ae;
+}
+
+#workspaces button.focused {
+    color: #e8e6df;
+    font-weight: bold;
+}
+
+#workspaces button.urgent {
+    color: #d08770;
+}
+
+#workspaces button:hover {
+    background: #22262a;
+    color: #e8e6df;
+}
+
+#mode {
+    padding: 0 8px;
+    color: #ebcb8b;
+}
+
+/* ---------- módulos ---------- */
+#clock,
+#language,
+#pulseaudio,
+#bluetooth,
+#network,
+#backlight,
+#battery,
+#tray {
+    padding: 0 8px;
+    background: transparent;
+    color: #b8b8ae;
+}
+
+#clock {
+    color: #e8e6df;
+}
+
+#custom-sep {
+    padding: 0 2px;
+    color: #4a4e54;
+}
+
+#custom-ff,
+#custom-code,
+#custom-docs,
+#custom-spt,
+#custom-cider,
+#custom-steam {
+    padding: 0 7px;
+    color: #6b6f76;
+    background: transparent;
+}
+
+#custom-ff:hover,
+#custom-code:hover,
+#custom-docs:hover,
+#custom-spt:hover,
+#custom-cider:hover,
+#custom-steam:hover {
+    color: #e8e6df;
+    background: #22262a;
+}
+
+/* ---------- estados ---------- */
+#pulseaudio.muted,
+#bluetooth.off,
+#bluetooth.disabled,
+#network.disconnected {
+    color: #6b6f76;
+}
+
+#network.disconnected {
+    color: #bf616a;
+}
+
+#battery.charging,
+#battery.plugged {
+    color: #a3be8c;
+}
+
+#battery.warning:not(.charging) {
+    color: #ebcb8b;
+}
+
+#battery.critical:not(.charging) {
+    color: #bf616a;
+    animation: blink 1.5s steps(2, start) infinite;
+}
+
+@keyframes blink {
+    to {
+        color: #e8e6df;
+    }
+}
+
+#tray {
+    padding-right: 10px;
+}
+
+#tray menu {
+    background: #16181a;
+    color: #b8b8ae;
+}
+
+#tray > .passive {
+    -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+    -gtk-icon-effect: highlight;
+}
+
+/* tooltips */
+tooltip {
+    background: #16181a;
+    border: 1px solid #2e3238;
+    color: #b8b8ae;
+}
