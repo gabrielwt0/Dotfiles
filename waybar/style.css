@@ -1,4 +1,4 @@
-/* ~/.config/waybar/style.css */
+/* ~/.config/waybar/style.css — Gruvbox Dark */
 
 * {
     border: none;
@@ -14,11 +14,10 @@
 }
 
 window#waybar {
-    background: #16181a;
-    color: #b8b8ae;
+    background: #1d2021;   /* bg0_hard */
+    color: #ebdbb2;        /* fg1 */
 }
 
-/* deixa a barra some quando a janela está em fullscreen */
 window#waybar.hidden {
     opacity: 0;
 }
@@ -31,31 +30,31 @@ window#waybar.hidden {
 #workspaces button {
     padding: 0 6px;
     background: transparent;
-    color: #6b6f76;
+    color: #665c54;        /* bg3 */
     min-width: 0;
 }
 
 #workspaces button.visible {
-    color: #b8b8ae;
+    color: #a89984;        /* fg4 */
 }
 
 #workspaces button.focused {
-    color: #e8e6df;
+    color: #fabd2f;        /* amarelo claro */
     font-weight: bold;
 }
 
 #workspaces button.urgent {
-    color: #d08770;
+    color: #fb4934;        /* vermelho claro */
 }
 
 #workspaces button:hover {
-    background: #22262a;
-    color: #e8e6df;
+    background: #3c3836;   /* bg1 */
+    color: #fbf1c7;
 }
 
 #mode {
     padding: 0 8px;
-    color: #ebcb8b;
+    color: #fe8019;        /* laranja */
 }
 
 /* ---------- módulos ---------- */
@@ -66,21 +65,23 @@ window#waybar.hidden {
 #network,
 #backlight,
 #battery,
+#custom-tuned,
 #tray {
     padding: 0 8px;
     background: transparent;
-    color: #b8b8ae;
+    color: #ebdbb2;
 }
 
 #clock {
-    color: #e8e6df;
+    color: #fbf1c7;        /* fg0 */
 }
 
 #custom-sep {
     padding: 0 2px;
-    color: #4a4e54;
+    color: #504945;        /* bg2 */
 }
 
+/* ---------- lançadores ---------- */
 #custom-ff,
 #custom-code,
 #custom-docs,
@@ -88,7 +89,7 @@ window#waybar.hidden {
 #custom-cider,
 #custom-steam {
     padding: 0 7px;
-    color: #6b6f76;
+    color: #928374;        /* gray */
     background: transparent;
 }
 
@@ -98,58 +99,52 @@ window#waybar.hidden {
 #custom-spt:hover,
 #custom-cider:hover,
 #custom-steam:hover {
-    color: #e8e6df;
-    background: #22262a;
+    color: #fbf1c7;
+    background: #3c3836;
 }
-
-#custom-tuned {
-    padding: 0 8px;
-    color: #b8b8ae;
-}
-
-#custom-tuned.powersave { color: #a3be8c; }
-#custom-tuned.balanced  { color: #b8b8ae; }
-#custom-tuned.throughput-performance { color: #ebcb8b; }
 
 /* ---------- estados ---------- */
 #pulseaudio.muted,
 #bluetooth.off,
-#bluetooth.disabled,
-#network.disconnected {
-    color: #6b6f76;
+#bluetooth.disabled {
+    color: #665c54;
 }
 
 #network.disconnected {
-    color: #bf616a;
+    color: #fb4934;
 }
 
 #battery.charging,
 #battery.plugged {
-    color: #a3be8c;
+    color: #b8bb26;        /* verde claro */
 }
 
 #battery.warning:not(.charging) {
-    color: #ebcb8b;
+    color: #fabd2f;
 }
 
 #battery.critical:not(.charging) {
-    color: #bf616a;
+    color: #fb4934;
     animation: blink 1.5s steps(2, start) infinite;
 }
 
 @keyframes blink {
-    to {
-        color: #e8e6df;
-    }
+    to { color: #fbf1c7; }
 }
 
+/* perfis do tuned */
+#custom-tuned.powersave { color: #b8bb26; }
+#custom-tuned.balanced  { color: #ebdbb2; }
+#custom-tuned.throughput-performance { color: #fe8019; }
+
+/* ---------- bandeja ---------- */
 #tray {
     padding-right: 10px;
 }
 
 #tray menu {
-    background: #16181a;
-    color: #b8b8ae;
+    background: #1d2021;
+    color: #ebdbb2;
 }
 
 #tray > .passive {
@@ -160,9 +155,13 @@ window#waybar.hidden {
     -gtk-icon-effect: highlight;
 }
 
-/* tooltips */
+/* ---------- tooltip ---------- */
 tooltip {
-    background: #16181a;
-    border: 1px solid #2e3238;
-    color: #b8b8ae;
+    background: #1d2021;
+    border: 1px solid #504945;
+    color: #ebdbb2;
+}
+
+tooltip label {
+    color: #ebdbb2;
 }

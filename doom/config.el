@@ -10,7 +10,7 @@
       doom-variable-pitch-font (font-spec :family "Noto Sans" :size 15)
       doom-big-font (font-spec :family "JetBrainsMono Nerd Font" :size 22))
 
-(setq doom-theme 'doom-nord)
+(setq doom-theme 'doom-gruvbox)
 (setq display-line-numbers-type 'relative)
 (setq frame-resize-pixelwise t)
 

@@ -43,12 +43,12 @@ gaps outer 0
 smart_gaps on
 smart_borders on
 
-client.focused           #5e81ac  #2e3440  #eceff4  #5e81ac    #5e81ac
-client.focused_inactive  #3b4252  #2e3440  #d8dee9  #3b4252    #3b4252
-client.unfocused         #3b4252  #2e3440  #4c566a  #3b4252    #3b4252
-client.urgent            #bf616a  #2e3440  #eceff4  #bf616a    #bf616a
+client.focused           #d79921  #1d2021  #ebdbb2  #d79921    #d79921
+client.focused_inactive  #3c3836  #1d2021  #a89984  #3c3836    #3c3836
+client.unfocused         #3c3836  #1d2021  #665c54  #3c3836    #3c3836
+client.urgent            #cc241d  #1d2021  #ebdbb2  #cc241d    #cc241d
 
-output * bg #2e3440 solid_color
+output * bg #1d2021 solid_color
 
 ### Saídas e entradas ----------------------------------------------------
 # swaymsg -t get_outputs / swaymsg -t get_inputs
@@ -72,10 +72,10 @@ mouse_warping none
 
 ### Ociosidade e bloqueio ------------------------------------------------
 exec swayidle -w \
-    timeout 300 'swaylock -f -c 2e3440' \
+    timeout 300 'swaylock -f -c 1d2021' \
     timeout 600 'swaymsg "output * power off"' \
     resume 'swaymsg "output * power on"' \
-    before-sleep 'swaylock -f -c 2e3440'
+    before-sleep 'swaylock -f -c 1d2021'
 
 ### Atalhos: básico ------------------------------------------------------
 bindsym $mod+Return exec $term
@@ -176,7 +176,7 @@ bindsym $mod+Shift+m exec $cider
 bindsym $mod+g exec $steam
 bindsym $mod+Print exec grim -g "$(slurp)" - | wl-copy
 
-bindsym $mod+Shift+x exec swaylock -f -c 2e3440
+bindsym $mod+Shift+x exec swaylock -f -c 1d2021
 
 ### Atribuição de apps a workspaces -------------------------------------
 assign [app_id="^org\.mozilla\.firefox$"] $ws2
