@@ -24,7 +24,7 @@
        zen                       ; modo escrita sem distração
 
        :editor
-       (evil +everything)        ; teclas vim; remova se preferir teclas emacs
+       ;;(evil +everything)        ; teclas vim; remova se preferir teclas emacs
        file-templates
        fold
        (format +onsave)

@@ -1,1 +1,8 @@
+# contém URL secreta do Google Calendar
 doom/gcal.el
+
+# cache e temporários
+*.elc
+*.bak
+*~
+.DS_Store
