@@ -47,6 +47,10 @@ if command -v code >/dev/null 2>&1; then
     printf '  ok  vscode/extensions.txt (gerado)\n'
 fi
 
+# KDE (Plasma, sem Sway) — Konsole e env de sessão
+copia ~/.local/share/konsole/Shell.profile kde/konsole
+copia ~/.config/environment.d/10-shell.conf kde/environment.d
+
 echo
 git add -A
 git status -sb

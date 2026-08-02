@@ -1,5 +1,11 @@
 # ~/.zshrc
 
+### PATH ------------------------------------------------------------------
+# precisa vir antes de qualquer `command -v` (starship, pyenv, etc.) que
+# dependa de binários instalados fora do PATH padrão da sessão
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$HOME/.local/bin:$HOME/.npm-global/bin:$HOME/.dotnet/tools:$HOME/go/bin:$PYENV_ROOT/bin:$HOME/.config/emacs/bin:$PATH"
+
 ### Histórico -----------------------------------------------------------
 HISTFILE=~/.zsh_history
 HISTSIZE=50000
@@ -56,12 +62,6 @@ alias up='sudo dnf upgrade --refresh && flatpak update'
 alias inst='sudo dnf install'
 alias busca='dnf search'
 
-# sway
-alias swayrl='sway --validate --config ~/.config/sway/config && swaymsg reload'
-alias swaycfg='$EDITOR ~/.config/sway/config'
-alias barcfg='$EDITOR ~/.config/waybar/config.jsonc'
-alias barlog='pkill waybar; waybar'
-
 # git
 alias g='git'
 alias gs='git status -sb'
@@ -101,7 +101,7 @@ extrai() {
 bkp() { cp "$1" "$1.bak-$(date +%Y%m%d-%H%M)" && echo "→ $1.bak-$(date +%Y%m%d-%H%M)"; }
 
 ### Prompt --------------------------------------------------------------
-eval "$(starship init zsh)"
+command -v starship >/dev/null && eval "$(starship init zsh)"
 
 ### Busca fuzzy (fzf) ----------------------------------------------------
 source <(fzf --zsh) 2>/dev/null
@@ -109,16 +109,6 @@ export FZF_DEFAULT_OPTS="--height 40% --layout=reverse --border
   --color=bg+:#2e3238,fg:#b8b8ae,fg+:#e8e6df,hl:#5e81ac,hl+:#88c0d0,prompt:#a3be8c"
 export QT_QPA_PLATFORM=wayland
 export QT_QPA_PLATFORMTHEME=qt6ct
-export QT_QPA_PLATFORM=wayland
-export QT_QPA_PLATFORMTHEME=qt6ct
-export QT_QPA_PLATFORM=wayland
-export QT_QPA_PLATFORMTHEME=qt6ct
-export PATH="$HOME/.config/emacs/bin:$PATH"
 
 # pyenv
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
-
-# user-local tool installs (pip --user, npm --prefix, dotnet tool, go install)
-export PATH="$HOME/.local/bin:$HOME/.npm-global/bin:$HOME/.dotnet/tools:$HOME/go/bin:$PATH"
+command -v pyenv >/dev/null && eval "$(pyenv init -)"

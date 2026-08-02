@@ -3,7 +3,7 @@
 
 ;;; ---------------------------------------------------------------- identidade
 (setq user-full-name "Marcos"
-      user-mail-address "seu@email.com")
+      user-mail-address "marcosgwt@gmail.com")
 
 ;;; ------------------------------------------------------------------ aparência
 (setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 14)

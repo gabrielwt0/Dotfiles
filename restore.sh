@@ -39,6 +39,10 @@ restaura waybar/tuned.sh            ~/.config/waybar/tuned.sh
 restaura vscode/settings.json       ~/.config/Code/User/settings.json
 restaura vscode/snippets/latex.json ~/.config/Code/User/snippets/latex.json
 
+# KDE (Plasma, sem Sway) — só relevante se restaurando numa máquina KDE
+restaura kde/konsole/Shell.profile       ~/.local/share/konsole/Shell.profile
+restaura kde/environment.d/10-shell.conf ~/.config/environment.d/10-shell.conf
+
 cat <<'EOF'
 
 Feito. Passos seguintes:
