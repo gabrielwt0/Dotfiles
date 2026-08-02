@@ -5,8 +5,7 @@
 (doom! :input
 
        :completion
-       (vertico +icons)          ; busca/minibuffer moderno
-       (corfu +orderless +icons) ; autocompletar inline
+       (company +childframe)     ; autocompletar inline (popup company-box)
 
        :ui
        doom
@@ -75,10 +74,10 @@
        (latex +latexmk +cdlatex +fold +lsp)
        (markdown +grip)
        (org +pretty +dragndrop +noter +jupyter +present +roam)
-       (python +lsp +pyright +tree-sitter)
+       (python +lsp +pyright +pyenv +tree-sitter)
        (sh +lsp +tree-sitter)
        (sql +lsp)
-       (web +lsp)
+       (web +lsp +html)
        yaml
 
        :config
