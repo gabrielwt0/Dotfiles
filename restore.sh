@@ -43,6 +43,10 @@ restaura vscode/snippets/latex.json ~/.config/Code/User/snippets/latex.json
 restaura kde/konsole/Shell.profile       ~/.local/share/konsole/Shell.profile
 restaura kde/environment.d/10-shell.conf ~/.config/environment.d/10-shell.conf
 
+# Neovim (LazyVim) — depois de restaurar, abra o nvim para o lazy.nvim
+# instalar os plugins (lazy-lock.json fixa as versões)
+restaura nvim ~/.config/nvim
+
 cat <<'EOF'
 
 Feito. Passos seguintes:

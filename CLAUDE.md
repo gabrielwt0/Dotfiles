@@ -64,6 +64,17 @@ sistema. Os dois scripts em `set -euo pipefail` movem arquivos entre os dois:
 - `system/texlive-packages.txt` — pacotes dnf da toolchain LaTeX (scheme básico + latexmk,
   latexindent, chktex, texcount, biber, enumitem) que o `vscode/settings.json` do LaTeX Workshop
   espera; instalados pelo `bootstrap.sh`, não pelo `restore.sh` (que só copia arquivos).
+- `nvim/` — config completa do LazyVim (`~/.config/nvim`). `lazy-lock.json` fixa a versão exata de
+  cada plugin; plugins/dados instalados ficam em `~/.local/share/nvim`, fora do repo. Extras do
+  LazyVim (R, Python, C/C++, Java, web, SQL, LaTeX, DAP, testes) são habilitados via linhas
+  `{ import = "lazyvim.plugins.extras...." }` em `lua/config/lazy.lua`, não pela UI `:LazyExtras`.
+  `lua/plugins/` tem overrides próprios: `colorscheme.lua` (Gruvbox), `web-templates.lua` (html/css/
+  emmet para templates Jinja do Flask), `python-repl.lua` (iron.nvim, REPL de dados como o R.nvim já
+  dá pro R). `lua/config/options.lua` registra a conexão MariaDB do projeto `ferro` no vim-dadbod-ui
+  automaticamente, lendo a senha de `~/dev/ferro/.env` em runtime (nunca hardcoded aqui).
+- `nvim-lsp-extras-setup.sh` — bootstrap como `bootstrap.sh`/`kde/dotfiles-kde-setup.sh` (não copia
+  arquivos): instala Go via dnf, necessário só para o Mason compilar o `sqls` (LSP de SQL usado pelo
+  extra `lang.sql`). Fica fora de `nvim/` de propósito — senão o `rm -rf nvim` do `sync.sh` apagaria.
 - `kde/` — só relevante ao restaurar numa máquina Fedora KDE Plasma (sem Sway). `konsole/Shell.profile`
   e `environment.d/10-shell.conf` são copiados pelo `restore.sh` como qualquer outro arquivo.
   `dotfiles-kde-setup.sh` (pacotes dnf: zsh, alacritty, eza, fzf, qt6ct, emacs, VS Code, LaTeX, chsh

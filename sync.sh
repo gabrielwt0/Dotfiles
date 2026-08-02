@@ -51,6 +51,13 @@ fi
 copia ~/.local/share/konsole/Shell.profile kde/konsole
 copia ~/.config/environment.d/10-shell.conf kde/environment.d
 
+# Neovim (LazyVim) — só o config (~/.config/nvim); plugins/dados ficam em
+# ~/.local/share/nvim, fora do repo
+rm -rf nvim
+mkdir -p nvim
+cp -r ~/.config/nvim/. nvim/
+printf '  ok  ~/.config/nvim\n'
+
 echo
 git add -A
 git status -sb
