@@ -8,7 +8,9 @@ set -euo pipefail
 echo "==> installing Go (required to build sqls) and R package build deps"
 # libxml2-devel: R package xml2 (dep of lintr/roxygen2, dep of r-languageserver)
 # libgit2-devel/libssh2-devel/openssl-devel: R package git2r (dep of r-languageserver)
-sudo dnf install -y golang libxml2-devel libgit2-devel libssh2-devel openssl-devel
+# libuv-devel: R package fs (dep of pkgload -> roxygen2 -> languageserver)
+# libcurl-devel: R package curl (dep of r-languageserver's chain)
+sudo dnf install -y golang libxml2-devel libgit2-devel libssh2-devel openssl-devel libuv-devel libcurl-devel
 
 echo "==> installing sqls via Mason"
 nvim --headless -c "lua require('mason-registry').get_package('sqls'):install():once('closed', function() vim.schedule(function() vim.cmd('qa!') end) end)" 2>&1 | tail -5
