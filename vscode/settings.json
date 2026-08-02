@@ -1,0 +1,66 @@
+{
+    "security.workspace.trust.untrustedFiles": "open",
+    "terminal.integrated.sendKeybindingsToShell": true,
+    "kite.showWelcomeNotificationOnStartup": false,
+    "debug.onTaskErrors": "debugAnyway",
+    "intelephense.environment.phpVersion": "8.0",
+    "explorer.confirmDelete": false,
+    "editor.minimap.enabled": false,
+    "explorer.confirmDragAndDrop": false,
+    "terminal.integrated.gpuAcceleration": "off",
+    "workbench.startupEditor": "none",
+    "workbench.iconTheme": "material-icon-theme",
+    "[python]": {
+        "editor.formatOnType": true
+    },
+    "editor.fontLigatures": true,
+    "c-cpp-compile-run.c-compiler": "C:\\MinGW\\bin\\gcc.exe",
+    "c-cpp-compile-run.cpp-compiler": "C:\\MinGW\\bin\\g++.exe",
+    "hexeditor.columnWidth": 32,
+    "hexeditor.showDecodedText": true,
+    "hexeditor.defaultEndianness": "little",
+    "hexeditor.inspectorType": "aside",
+    "hexeditor.showOpenFileButton": true,
+    "workbench.editorAssociations": {
+        "*.bin": "hexEditor.hexedit",
+        "*.pdf": "latex-workshop-pdf-hook"
+    },
+    "git.autofetch": true,
+    "[html]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "redhat.telemetry.enabled": false,
+    "workbench.colorTheme": "Andromeda",
+    "git.confirmSync": false,
+    "markdown.extension.toc.updateOnSave": true,
+    "dart.flutterSdkPath": "C:\\Users\\marco\\Downloads\\Flutter\\flutter",
+    "github.copilot.nextEditSuggestions.enabled": true,
+    "genieai.enableConversationHistory": true,
+    "files.associations": {
+        "*.dbclient-js": "javascript",
+        "*.rmd": "markdown"
+    },
+    "gitlens.ai.model": "vscode",
+    "gitlens.ai.vscode.model": "copilotcli:",
+
+    "latex-workshop.latex.autoBuild.run": "onFileChange",
+    "latex-workshop.latex.autoClean.run": "onBuilt",
+    "latex-workshop.latex.recipe.default": "lastUsed",
+    "latex-workshop.view.pdf.viewer": "tab",
+    "latex-workshop.view.pdf.zoom": "page-width",
+    "latex-workshop.synctex.afterBuild.enabled": true,
+    "latex-workshop.intellisense.package.enabled": true,
+    "latex-workshop.hover.preview.enabled": true,
+    "latex-workshop.message.error.show": false,
+    "latex-workshop.message.warning.show": false,
+    "[latex]": {
+        "editor.defaultFormatter": "James-Yu.latex-workshop",
+        "editor.formatOnSave": true,
+        "editor.wordWrap": "on",
+        "editor.quickSuggestions": {
+            "other": true,
+            "comments": false,
+            "strings": true
+        }
+    }
+}

@@ -1,0 +1,10 @@
+texlive-scheme-basic
+texlive-collection-basic
+texlive-collection-latex
+texlive-collection-latexrecommended
+latexmk
+texlive-latexindent
+texlive-chktex
+texlive-texcount
+biber
+texlive-enumitem

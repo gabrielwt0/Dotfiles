@@ -36,13 +36,15 @@ restaura doom/packages.el           ~/.config/doom/packages.el
 restaura apps/code-flags.conf       ~/.config/code-flags.conf
 restaura apps/spotify-flags.conf    ~/.config/spotify-flags.conf
 restaura waybar/tuned.sh            ~/.config/waybar/tuned.sh
+restaura vscode/settings.json       ~/.config/Code/User/settings.json
+restaura vscode/snippets/latex.json ~/.config/Code/User/snippets/latex.json
 
 cat <<'EOF'
 
 Feito. Passos seguintes:
 
-  1. Instale os pacotes:
-       ./bootstrap.sh          (se existir)
+  1. Instale os pacotes e extensões do VS Code:
+       ./bootstrap.sh
 
   2. Doom Emacs:
        git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.config/emacs

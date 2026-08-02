@@ -39,6 +39,14 @@ copia ~/.config/doom/packages.el         doom
 copia ~/.config/code-flags.conf          apps
 copia ~/.config/spotify-flags.conf       apps
 
+# VS Code
+copia ~/.config/Code/User/settings.json       vscode
+copia ~/.config/Code/User/snippets/latex.json vscode/snippets
+if command -v code >/dev/null 2>&1; then
+    code --list-extensions > vscode/extensions.txt
+    printf '  ok  vscode/extensions.txt (gerado)\n'
+fi
+
 echo
 git add -A
 git status -sb

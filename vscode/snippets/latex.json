@@ -1,0 +1,59 @@
+{
+    "Note document skeleton": {
+        "scope": "latex",
+        "prefix": "note",
+        "body": [
+            "\\documentclass[11pt]{article}",
+            "",
+            "\\usepackage[a4paper,margin=1in]{geometry}",
+            "\\usepackage{amsmath,amssymb,mathtools}",
+            "\\usepackage{enumitem}",
+            "\\usepackage{xcolor}",
+            "\\usepackage{hyperref}",
+            "\\hypersetup{colorlinks=true, linkcolor=blue, urlcolor=blue, citecolor=blue}",
+            "",
+            "\\title{${1:Title}}",
+            "\\author{${2:Marcos}}",
+            "\\date{\\today}",
+            "",
+            "\\begin{document}",
+            "\\maketitle",
+            "",
+            "$0",
+            "",
+            "\\end{document}",
+            ""
+        ],
+        "description": "Starter LaTeX note document with common packages"
+    },
+    "Section": {
+        "scope": "latex",
+        "prefix": "sec",
+        "body": ["\\section{${1:Section}}", "$0"]
+    },
+    "Subsection": {
+        "scope": "latex",
+        "prefix": "ssec",
+        "body": ["\\subsection{${1:Subsection}}", "$0"]
+    },
+    "Itemize list": {
+        "scope": "latex",
+        "prefix": "item",
+        "body": ["\\begin{itemize}", "\t\\item $0", "\\end{itemize}"]
+    },
+    "Enumerate list": {
+        "scope": "latex",
+        "prefix": "enum",
+        "body": ["\\begin{enumerate}", "\t\\item $0", "\\end{enumerate}"]
+    },
+    "Inline math": {
+        "scope": "latex",
+        "prefix": "mm",
+        "body": ["\\($0\\)"]
+    },
+    "Display equation": {
+        "scope": "latex",
+        "prefix": "eq",
+        "body": ["\\begin{equation}", "\t$0", "\\end{equation}"]
+    }
+}

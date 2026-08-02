@@ -3,7 +3,12 @@
 ## Restaurar numa máquina nova
 
     git clone git@github.com:gabrielwt0/Dotfiles.git ~/dotfiles
-    cd ~/dotfiles && ./restore.sh
+    cd ~/dotfiles
+    ./bootstrap.sh   # instala VS Code, pacotes LaTeX (dnf) e extensões
+    ./restore.sh     # copia as configs para os lugares certos
+
+`vscode/` e `system/texlive-packages.txt` não dependem do Sway — funcionam em qualquer spin do
+Fedora (inclusive KDE).
 
 ## Atualizar o repositório
 

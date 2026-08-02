@@ -16,6 +16,8 @@ sistema. Os dois scripts em `set -euo pipefail` movem arquivos entre os dois:
 ```
 ./sync.sh      # copia do sistema (~/.config/...) PARA o repo, depois `git add -A` + `git status -sb`
 ./restore.sh   # copia do repo PARA o sistema (~/.config/...), com backup .bak-<timestamp> do que existir
+./bootstrap.sh # instala software (VS Code, pacotes LaTeX via dnf, extensões do VS Code) — não copia
+                # arquivos, roda antes ou depois do restore.sh indiferentemente
 ```
 
 - **Sempre que um arquivo de config do sistema for editado diretamente** (ex.: `~/.config/sway/config`),
@@ -53,6 +55,15 @@ sistema. Os dois scripts em `set -euo pipefail` movem arquivos entre os dois:
 - `scripts/aplica-gruvbox.sh` — aplica o tema Gruvbox Dark editando `sway/config` e `doom/config.el`
   in-place via `sed` (com backup automático), depois valida com `sway --validate`. É o script a usar
   ao trocar de tema, não editar as cores manualmente em múltiplos arquivos.
+- `vscode/settings.json`, `vscode/snippets/latex.json` — settings e snippets globais do VS Code
+  (perfil padrão). Inclui config do LaTeX Workshop para redação de notas (autobuild/autoclean ao
+  salvar, PDF em aba com SyncTeX, format-on-save). Agnóstico de desktop environment — funciona em
+  qualquer spin do Fedora, não só Sway.
+- `vscode/extensions.txt` — lista de IDs de extensões (`code --list-extensions`), regenerada
+  automaticamente pelo `sync.sh`; instalada pelo `bootstrap.sh`.
+- `system/texlive-packages.txt` — pacotes dnf da toolchain LaTeX (scheme básico + latexmk,
+  latexindent, chktex, texcount, biber, enumitem) que o `vscode/settings.json` do LaTeX Workshop
+  espera; instalados pelo `bootstrap.sh`, não pelo `restore.sh` (que só copia arquivos).
 
 ## Convenções
 
