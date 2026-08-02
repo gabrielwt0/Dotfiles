@@ -14,8 +14,8 @@
         "editor.formatOnType": true
     },
     "editor.fontLigatures": true,
-    "c-cpp-compile-run.c-compiler": "C:\\MinGW\\bin\\gcc.exe",
-    "c-cpp-compile-run.cpp-compiler": "C:\\MinGW\\bin\\g++.exe",
+    "c-cpp-compile-run.c-compiler": "/usr/bin/gcc",
+    "c-cpp-compile-run.cpp-compiler": "/usr/bin/g++",
     "hexeditor.columnWidth": 32,
     "hexeditor.showDecodedText": true,
     "hexeditor.defaultEndianness": "little",
@@ -33,8 +33,9 @@
     "workbench.colorTheme": "Andromeda",
     "git.confirmSync": false,
     "markdown.extension.toc.updateOnSave": true,
-    "dart.flutterSdkPath": "C:\\Users\\marco\\Downloads\\Flutter\\flutter",
     "github.copilot.nextEditSuggestions.enabled": true,
+    "r.rpath.linux": "/usr/bin/R",
+    "r.rterm.linux": "/usr/bin/R",
     "genieai.enableConversationHistory": true,
     "files.associations": {
         "*.dbclient-js": "javascript",
