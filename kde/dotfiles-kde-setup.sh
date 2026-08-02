@@ -5,12 +5,16 @@
 #   bash ~/dotfiles-kde-setup.sh
 set -euo pipefail
 
-echo "==> installing packages (zsh, terminal/shell tooling, emacs + doom deps, qt6ct)"
+echo "==> installing packages (zsh, terminal/shell tooling, emacs + doom deps, qt6ct, R)"
 sudo dnf install -y \
     zsh alacritty eza fzf \
     zsh-autosuggestions zsh-syntax-highlighting \
     qt6ct \
-    emacs ripgrep fd-find git-core
+    emacs ripgrep fd-find git-core \
+    R mariadb-server
+
+echo "==> enabling MariaDB (used by local dev projects, e.g. ferro)"
+sudo systemctl enable --now mariadb
 
 echo "==> installing VS Code"
 if ! command -v code >/dev/null 2>&1; then
