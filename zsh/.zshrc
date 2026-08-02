@@ -114,3 +114,11 @@ export QT_QPA_PLATFORMTHEME=qt6ct
 export QT_QPA_PLATFORM=wayland
 export QT_QPA_PLATFORMTHEME=qt6ct
 export PATH="$HOME/.config/emacs/bin:$PATH"
+
+# pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+
+# user-local tool installs (pip --user, npm --prefix, dotnet tool, go install)
+export PATH="$HOME/.local/bin:$HOME/.npm-global/bin:$HOME/.dotnet/tools:$HOME/go/bin:$PATH"
