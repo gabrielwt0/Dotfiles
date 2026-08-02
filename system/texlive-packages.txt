@@ -9,3 +9,4 @@ texlive-texcount
 biber
 texlive-enumitem
 texlive-collection-langportuguese
+texlive-sectsty
