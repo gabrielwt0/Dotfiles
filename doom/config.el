@@ -64,13 +64,27 @@
   (setq org-todo-keywords
         '((sequence "TODO(t)" "FAZENDO(f)" "ESPERA(e)" "|" "FEITO(d)" "CANCELADO(c)")))
 
+  (defun +org/aula-capture-target ()
+    "Pergunta o nome do arquivo (sem extensão) e cria/visita a nota da aula
+no mesmo diretório do buffer atual (ou do dired, se for o caso)."
+    (let* ((nome (read-string "Nome do arquivo (sem .org), ex: Aula02_IdD: "))
+           (dir (if (buffer-file-name)
+                    (file-name-directory (buffer-file-name))
+                  default-directory))
+           (file (expand-file-name (concat nome ".org") dir)))
+      (find-file file)
+      (goto-char (point-max))))
+
   (setq org-capture-templates
         `(("t" "Tarefa" entry
            (file+headline ,(expand-file-name "inbox.org" org-directory) "Tarefas")
            "* TODO %?\n  %U\n  %a")
           ("n" "Nota" entry
            (file+headline ,(expand-file-name "inbox.org" org-directory) "Notas")
-           "* %?\n  %U")))
+           "* %?\n  %U")
+          ("a" "Aula (novo arquivo)" plain
+           (function +org/aula-capture-target)
+           "#+TITLE: %^{Título da aula}\n#+AUTHOR:\n#+DATE: %U\n#+STARTUP: overview\n\n* Tópicos                                                         :topicos:\n** Conceitos\n%?\n\n** Notas\n-\n\n* Exercícios                                                      :exercicios:\n** Exemplo 1\n*** Enunciado\n-\n*** Resolução\n-\n\n* Dúvidas / Perguntas                                             :duvidas:\n- [ ]\n\n* Resumo                                                           :resumo:\n-\n\n* Referências                                                      :refs:\n-\n")))
 
   (setq org-format-latex-options
         (plist-put org-format-latex-options :scale 1.6)))
@@ -81,7 +95,10 @@
     (dolist (l '(python R C java sql))
       (when (require (intern (format "ob-%s" l)) nil t)
         (push (cons l t) langs)))
-    (org-babel-do-load-languages 'org-babel-load-languages langs)))
+    (org-babel-do-load-languages 'org-babel-load-languages langs))
+
+  ;; Reexibe imagens (gráficos gerados por Python/R etc.) após executar um bloco
+  (add-hook 'org-babel-after-execute-hook #'org-redisplay-inline-images))
 
 ;;; ---------------------------------------------------- pacotes opcionais do Org
 (use-package! org-fragtog
@@ -136,6 +153,10 @@
 ;;; ============================================================ PYTHON
 (after! python
   (setq python-shell-interpreter "python3"))
+
+;; matplotlib sem display (necessário para :results file em blocos de babel):
+;; sem isso, plt.savefig pode falhar/travar tentando abrir um backend gráfico.
+(setenv "MPLBACKEND" "Agg")
 
 (after! lsp-pyright
   (setq lsp-pyright-typechecking-mode "basic"))
