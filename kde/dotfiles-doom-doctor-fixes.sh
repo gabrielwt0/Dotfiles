@@ -37,7 +37,7 @@ Done. A few doctor warnings are intentionally left unaddressed:
   - nosetests       (the `nose` test runner is unmaintained upstream;
                      pytest above covers the same job)
   - maim/scrot      (X11 screenshot tools for org-download-clipboard --
-                     won't work under a Wayland KDE session anyway)
+                     won't work under a Wayland session anyway, KDE or GNOME)
 
 Restart Emacs (or `doom sync`) and run `doom doctor` again afterward to
 confirm the warning count drops.

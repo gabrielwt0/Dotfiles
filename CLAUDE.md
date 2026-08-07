@@ -26,6 +26,10 @@ sistema. Os dois scripts em `set -euo pipefail` movem arquivos entre os dois:
   backup automático do arquivo anterior com sufixo `.bak-YYYYMMDD-HHMM`).
 - Cada par origem/destino é hardcoded nas funções `copia()`/`restaura()` de cada script — ao adicionar
   um novo arquivo de config ao repo, é preciso adicionar a linha correspondente em **ambos** os scripts.
+- `restore.sh` detecta a sessão atual via `$XDG_CURRENT_DESKTOP`/`$DESKTOP_SESSION` (variável
+  `IS_GNOME`) e pula sway/waybar/Konsole numa máquina GNOME — restaurar esses arquivos lá seria
+  inofensivo mas deixaria configs mortas em `~/.config`. `environment.d/10-shell.conf` continua sendo
+  restaurado sempre: é lido pelo systemd --user em qualquer desktop environment, não só KDE.
 - Depois de mexer no Sway, valide antes de recarregar: `sway --validate --config ~/.config/sway/config`
   e depois `swaymsg reload`.
 - Depois de mexer no Doom Emacs (`doom/*.el`), rode `doom sync` (e `doom doctor` se necessário) na
@@ -52,6 +56,8 @@ sistema. Os dois scripts em `set -euo pipefail` movem arquivos entre os dois:
 - `apps/*-flags.conf` — flags de linha de comando para apps Electron (VS Code, Spotify), ex.
   `--ozone-platform-hint=auto` para Wayland.
 - `zsh/.zshrc` — histórico, navegação, autocompletar, keybindings estilo emacs, aliases.
+  `QT_QPA_PLATFORMTHEME=qt6ct` só é exportado se o binário `qt6ct` existir (instalado pelo bootstrap
+  do Sway/KDE); no GNOME essa variável não é setada, deixando os apps Qt no tema padrão deles.
 - `scripts/aplica-gruvbox.sh` — aplica o tema Gruvbox Dark editando `sway/config` e `doom/config.el`
   in-place via `sed` (com backup automático), depois valida com `sway --validate`. É o script a usar
   ao trocar de tema, não editar as cores manualmente em múltiplos arquivos.
@@ -76,12 +82,16 @@ sistema. Os dois scripts em `set -euo pipefail` movem arquivos entre os dois:
   arquivos): instala Go via dnf, necessário só para o Mason compilar o `sqls` (LSP de SQL usado pelo
   extra `lang.sql`). Fica fora de `nvim/` de propósito — senão o `rm -rf nvim` do `sync.sh` apagaria.
 - `kde/` — só relevante ao restaurar numa máquina Fedora KDE Plasma (sem Sway). `konsole/Shell.profile`
-  e `environment.d/10-shell.conf` são copiados pelo `restore.sh` como qualquer outro arquivo.
-  `dotfiles-kde-setup.sh` (pacotes dnf: zsh, alacritty, eza, fzf, qt6ct, emacs, VS Code, LaTeX, chsh
-  para zsh) e `dotfiles-doom-doctor-fixes.sh` (pacotes que os módulos do Doom pedem: cmake, aspell,
-  direnv, sqlite, clang-tools-extra, JDK, etc.) são scripts de bootstrap como o `bootstrap.sh` — não
-  copiam arquivos, precisam ser rodados manualmente (`bash kde/dotfiles-kde-setup.sh`) por pedirem
-  sudo interativo.
+  e `environment.d/10-shell.conf` são copiados pelo `restore.sh` como qualquer outro arquivo (o
+  primeiro só se `restore.sh` não detectar GNOME). `dotfiles-kde-setup.sh` (pacotes dnf: zsh,
+  alacritty, eza, fzf, qt6ct, emacs, VS Code, LaTeX, chsh para zsh) e `dotfiles-doom-doctor-fixes.sh`
+  (pacotes que os módulos do Doom pedem: cmake, aspell, direnv, sqlite, clang-tools-extra, JDK, etc. —
+  agnóstico de desktop environment, apesar de morar aqui) são scripts de bootstrap como o
+  `bootstrap.sh` — não copiam arquivos, precisam ser rodados manualmente por pedirem sudo interativo.
+- `gnome/dotfiles-gnome-setup.sh` — bootstrap equivalente para Fedora GNOME Workstation: mesmos
+  pacotes do `kde/dotfiles-kde-setup.sh` menos o que é específico de KDE/Qt (qt6ct, Konsole), mais um
+  passo opcional de `gsettings` (tema escuro, Alacritty nos favoritos). Reusa
+  `kde/dotfiles-doom-doctor-fixes.sh` para as deps do Doom em vez de duplicar.
 
 ## Convenções
 

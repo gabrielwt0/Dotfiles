@@ -7,8 +7,16 @@
     ./bootstrap.sh   # instala VS Code, pacotes LaTeX (dnf) e extensões
     ./restore.sh     # copia as configs para os lugares certos
 
-`vscode/` e `system/texlive-packages.txt` não dependem do Sway — funcionam em qualquer spin do
-Fedora (inclusive KDE).
+`vscode/`, `zsh/`, `alacritty/`, `starship/`, `doom/` e `system/texlive-packages.txt` não dependem
+do Sway — funcionam em qualquer spin do Fedora. `restore.sh` detecta a sessão atual
+(`$XDG_CURRENT_DESKTOP`) e pula sway/waybar/Konsole automaticamente numa máquina GNOME.
+
+Pacotes de sistema (dnf) são instalados por um bootstrap por variante, já que cada uma precisa de
+coisas diferentes (qt6ct só faz sentido no KDE, por exemplo):
+
+    ./bootstrap.sh                    # Sway (padrão)
+    ./kde/dotfiles-kde-setup.sh       # Fedora KDE Plasma
+    ./gnome/dotfiles-gnome-setup.sh   # Fedora GNOME Workstation
 
 ## Atualizar o repositório
 

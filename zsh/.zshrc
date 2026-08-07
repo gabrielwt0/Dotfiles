@@ -108,7 +108,9 @@ source <(fzf --zsh) 2>/dev/null
 export FZF_DEFAULT_OPTS="--height 40% --layout=reverse --border
   --color=bg+:#2e3238,fg:#b8b8ae,fg+:#e8e6df,hl:#5e81ac,hl+:#88c0d0,prompt:#a3be8c"
 export QT_QPA_PLATFORM=wayland
-export QT_QPA_PLATFORMTHEME=qt6ct
+# qt6ct só existe nas máquinas Sway/KDE (instalado pelo bootstrap delas);
+# no GNOME os apps Qt usam o tema padrão, então não force a variável lá.
+command -v qt6ct >/dev/null 2>&1 && export QT_QPA_PLATFORMTHEME=qt6ct
 
 # pyenv
 command -v pyenv >/dev/null && eval "$(pyenv init -)"
